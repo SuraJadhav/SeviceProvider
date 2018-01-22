@@ -2,11 +2,25 @@ package com.project.beans;
 
 public class ServiceProvider {
 	String name;
+	int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getRequestContact() {
+		return requestContact;
+	}
+	public void setRequestContact(String requestContact) {
+		this.requestContact = requestContact;
+	}
 	String service;
 	String area;
 	String charge;
 	String contact;
 	String password;
+	String requestContact;
 	public String getContact() {
 		return contact;
 	}

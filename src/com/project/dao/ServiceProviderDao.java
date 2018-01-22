@@ -8,18 +8,41 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.project.beans.ServiceProvider;
+import com.project.beans.User;
 
 public class ServiceProviderDao {
 	JdbcTemplate template;
 	public void setTemplate(JdbcTemplate template) {  
 	    this.template = template;  
 	}
+	public int send(ServiceProvider p,int cont)
+	{
+		
+		String sql="insert into provider('"+cont+"')values("+p.getRequestContact()+"')";  
+	    return template.update(sql);  
+	}
+	public int save(ServiceProvider p){ 
+		
+		System.out.println("here in dao method");
+		//System.out.println(p.getName()+p.getArea()+p.getName()+p.getPassword());
+	    String sql="insert into provider(name,service,area,charge,contact,password)values('"+p.getName()+"','"+p.getService()+"','"+p.getArea()+"','"+p.getCharge()+"','"+p.getContact()+"','"+p.getPassword()+"')";  
+	    return template.update(sql);  
+	}
+	
 	public List<ServiceProvider> checkService(ServiceProvider p)
 	{
 		String sql="select * from Provider where service='" + p.getService() + "'";
 		List<ServiceProvider> provider = template.query(sql, new ProviderMapper());
 	    return provider;
 	}
+	public ServiceProvider checkProvider(ServiceProvider p)
+	{
+		String sql="select * from Provider where contact='" + p.getContact() + "' and password='" + p.getPassword()
+	    + "'";
+		List<ServiceProvider> provider = template.query(sql, new ProviderMapper());
+		return provider.size() > 0 ? provider.get(0) : null;
+	}
+
 
 }
 class ProviderMapper implements RowMapper<ServiceProvider> {
@@ -29,6 +52,7 @@ class ProviderMapper implements RowMapper<ServiceProvider> {
 	    provider.setArea(rs.getString("area"));
 	    provider.setCharge(rs.getString("charge"));
 	    provider.setService(rs.getString("service"));
+	    provider.setContact(rs.getString("contact"));
 	    
 	    return provider;
 	  }

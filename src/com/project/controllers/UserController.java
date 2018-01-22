@@ -21,7 +21,7 @@ public class UserController {
 	 @Autowired
 	 ServiceProviderDao dao1;
 	 
-	 
+	
 	@RequestMapping("/user")  
 	 public ModelAndView showform()
 	 {
