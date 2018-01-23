@@ -14,8 +14,9 @@
    <td><a href="sendRequest/${ServiceProvider.contact}">Send Request</a></td>
    <td>${firstname}</td>  
    
+   
    </tr>  
    </c:forEach>  
    </table>  
    <br/>  
- 
+   
