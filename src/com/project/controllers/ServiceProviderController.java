@@ -43,16 +43,18 @@ public ModelAndView checkProvider(@ModelAttribute("ServiceProvider") ServiceProv
 	 ServiceProvider uservalid=dao1.checkProvider(Provider);
 	 if(uservalid !=null)
 	 {
-		 System.out.println(uservalid.getName());
-		 mav=new ModelAndView("/WelcomeProvider","command",new ServiceProvider());
-		 System.out.println("aal re login user mde");
+		 System.out.println(uservalid.getName()+uservalid.getRequestContact());
+		 
+		// List<ServiceProvider>list=checkServiceRequest(Provider);
+		 mav=new ModelAndView("/WelcomeProvider");
+		 System.out.println("aal re login Provider mde");
 		 System.out.println("valid user");
 		 mav.addObject("contactnumber",uservalid.getRequestContact());
+		 return mav;
 	 }else
 	 {
 		 return new ModelAndView("/error");
 	 }
-	 return mav;
 
 }
 
@@ -62,7 +64,14 @@ public ModelAndView saveUser(@ModelAttribute("ServiceProvider") ServiceProvider 
 {
 	
 	 dao1.save(Provider);
-	 return new ModelAndView("redirect:/WelcomeProvider");
+	 return new ModelAndView("/Home");
+}
+
+
+public List<ServiceProvider> checkServiceRequest(ServiceProvider service)
+{
+	List<ServiceProvider>list= dao1.checkService(service);
+	return list; 
 }
 
 }

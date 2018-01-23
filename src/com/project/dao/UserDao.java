@@ -27,6 +27,7 @@ public class UserDao {
 	    + "'";
 		List<User> users = template.query(sql, new UserMapper());
 
+		System.out.println(p.getContactNo());
 	    return users.size() > 0 ? users.get(0) : null;
 	}
 

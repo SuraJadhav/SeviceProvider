@@ -15,10 +15,11 @@ public class ServiceProviderDao {
 	public void setTemplate(JdbcTemplate template) {  
 	    this.template = template;  
 	}
-	public int send(ServiceProvider p,int cont)
+	public int send(String p,int cont)
 	{
-		
-		String sql="insert into provider('"+cont+"')values("+p.getRequestContact()+"')";  
+		System.out.println("to update providers table");
+		System.out.println(p+cont);
+		String sql="UPDATE provider SET requestContact='"+p+"' WHERE contact='"+cont+"'";  
 	    return template.update(sql);  
 	}
 	public int save(ServiceProvider p){ 
@@ -29,6 +30,15 @@ public class ServiceProviderDao {
 	    return template.update(sql);  
 	}
 	
+	
+	public List<ServiceProvider> checkServiceRequest(ServiceProvider p)
+	{
+		String sql="select * from Provider where contact='" + p.getContact() + "'";
+		List<ServiceProvider> provider = template.query(sql, new ProviderMapper());
+	    return provider;
+	}
+	
+	
 	public List<ServiceProvider> checkService(ServiceProvider p)
 	{
 		String sql="select * from Provider where service='" + p.getService() + "'";
@@ -37,7 +47,7 @@ public class ServiceProviderDao {
 	}
 	public ServiceProvider checkProvider(ServiceProvider p)
 	{
-		String sql="select * from Provider where contact='" + p.getContact() + "' and password='" + p.getPassword()
+		String sql="select * from provider where contact='" + p.getContact() + "' and password='" + p.getPassword()
 	    + "'";
 		List<ServiceProvider> provider = template.query(sql, new ProviderMapper());
 		return provider.size() > 0 ? provider.get(0) : null;
@@ -53,6 +63,7 @@ class ProviderMapper implements RowMapper<ServiceProvider> {
 	    provider.setCharge(rs.getString("charge"));
 	    provider.setService(rs.getString("service"));
 	    provider.setContact(rs.getString("contact"));
+	    provider.setRequestContact(rs.getString("requestContact"));
 	    
 	    return provider;
 	  }

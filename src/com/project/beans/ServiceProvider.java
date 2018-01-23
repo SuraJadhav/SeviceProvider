@@ -3,18 +3,7 @@ package com.project.beans;
 public class ServiceProvider {
 	String name;
 	int id;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getRequestContact() {
-		return requestContact;
-	}
-	public void setRequestContact(String requestContact) {
-		this.requestContact = requestContact;
-	}
+	
 	String service;
 	String area;
 	String charge;
@@ -57,5 +46,19 @@ public class ServiceProvider {
 	public void setCharge(String charge) {
 		this.charge = charge;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setRequestContact(String requestContact) {
+		this.requestContact = requestContact;
+	}
+	
+	public String getRequestContact() {
+		return requestContact;
+	}
+	
 
 }

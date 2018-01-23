@@ -11,7 +11,7 @@
    <td>${ServiceProvider.area}</td>  
    <td>${ServiceProvider.service}</td>
    <td>${ServiceProvider.contact}</td>  
-   <td><a href="sendRequest/${ServiceProvider.contact}">Send Request1</a></td>
+   <td><a href="sendRequest/${ServiceProvider.contact}">Send Request</a></td>
    <td>${firstname}</td>  
    
    </tr>  
