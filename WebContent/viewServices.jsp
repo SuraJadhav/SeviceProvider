@@ -15,6 +15,8 @@
    <td>${firstname}</td>  
    
    
+   
+   
    </tr>  
    </c:forEach>  
    </table>  
